@@ -1,0 +1,34 @@
+
+
+<header>
+<nav>
+  <ul>
+    <a routerLink="/add-cocktail-component" routerLinkActive="active"><li>Add a cocktail</li></a>
+    <a routerLink="/view-cocktail-component" routerLinkActive="active"><li>View cocktails</li></a>
+  </ul>
+</nav>
+</header>
+
+
+
+<router-outlet></router-outlet>
+
+<footer>
+  
+  
+
+  <div *ngIf="loggedIn == true; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+  <img src="{{ user.photoUrl }}">
+<div>
+  <h4>{{ user.name }}</h4>
+  <p>{{ user.email }}</p>
+</div>
+  <button (click)="signOut()">sign out</button>
+</ng-template>
+<ng-template #elseBlock>
+  <button (click)="signInWithGoogle()">sign in</button>
+</ng-template>
+
+</footer>
+ 

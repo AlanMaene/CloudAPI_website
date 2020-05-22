@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+footer{
+    text-align: center;
+    background-color: #eee;
+    float: left;
+    width: 100vw;
+}
+footer *{
+    float: left;
+    width: 10vw;
+}
+.g-signin2{
+    float: none;
+    margin: 0px auto;
+}

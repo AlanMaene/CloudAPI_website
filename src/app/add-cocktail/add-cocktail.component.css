@@ -1,0 +1,23 @@
+.container{
+    float: left;
+    box-sizing: border-box;    
+    width: 100vw;
+    padding-left: 30vw;
+    min-height: 70vh;
+    margin: 0px auto;
+    margin-top: 40px;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }

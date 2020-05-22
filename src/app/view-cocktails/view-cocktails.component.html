@@ -1,0 +1,12 @@
+
+<div class="container">
+    
+    <div *ngFor="let p of products; let i=index;">
+
+       <h1>{{p.name}}  </h1>
+       <table style="text-align:left">
+           <tr *ngFor="let measure of p.measurements"><th>{{measure.ingredient.name}}</th> <th>{{measure.measurements}}ml</th></tr>
+        </table>
+        <button class="button"  (click)="test(p.name)">More info</button>
+    </div>
+</div>
