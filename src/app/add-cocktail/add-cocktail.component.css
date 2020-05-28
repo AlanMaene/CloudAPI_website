@@ -2,7 +2,6 @@
     float: left;
     box-sizing: border-box;    
     width: 100vw;
-    padding-left: 30vw;
     min-height: 70vh;
     margin: 0px auto;
     margin-top: 40px;
@@ -20,4 +19,16 @@ table {
   
   tr:nth-child(even) {
     background-color: #dddddd;
+  }
+  .left{
+    float: left;
+    width: 50vw;
+  }
+  .right{
+    float: right;
+    width: 50vw;
+    text-align: center;
+  }
+  ul{
+    list-style-type: none;
   }

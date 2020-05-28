@@ -1,52 +1,63 @@
 
 <div class="container">
-<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+  <div class="left">
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
 
-    <div>
-      <label for="name">
-        Name
-      </label>
-      <input id="name" type="text" formControlName="name">
-    </div>
-  
-    <div>
-      <label for="bartender">
-        Bartender
-      </label>
-      <input id="address" type="text" formControlName="bartender">
-    </div>
+        <div>
+          <label for="name">
+            Name
+          </label>
+          <input id="name" type="text" formControlName="name">
+        </div>
+      
+        <div>
+          <label for="bartender">
+            Bartender
+          </label>
+          <input id="address" type="text" formControlName="bartender">
+        </div>
 
-    <div>
-      <label for="instuctions">
-        Instructions
-      </label>
-      <input id="address" type="text" formControlName="instructions">
-    </div>
+        <div>
+          <label for="instuctions">
+            Instructions
+          </label>
+          <input id="address" type="text" formControlName="instructions">
+        </div>
 
-    <table >
-      <tr><th>Name ingredient</th> <th>Measurements (in ml)</th></tr>
-      <!--<tr *ngFor="let test of numberOfMeasurements;let i = index "><th>{{i}}<input type="text" formControlName="{{i}}" id="{{i}}"></th><th>a</th></tr>
-      <tr><button (click)="addIngredient()">Add ingredient</button></tr>-->
+        <table >
+          <tr><th>Name ingredient</th> <th>Measurements (in ml)</th></tr>
+          <!--<tr *ngFor="let test of numberOfMeasurements;let i = index "><th>{{i}}<input type="text" formControlName="{{i}}" id="{{i}}"></th><th>a</th></tr>
+          <tr><button (click)="addIngredient()">Add ingredient</button></tr>-->
 
-      <tr><th><input type="text" formControlName="ingredient1"></th><th><input type="number" formControlName="measurements1"></th></tr>
-      <tr><th><input type="text" formControlName="ingredient2"></th><th><input type="number" formControlName="measurements2"></th></tr>
-      <tr><th><input type="text" formControlName="ingredient3"></th><th><input type="number" formControlName="measurements3"></th></tr>
-      <tr><th><input type="text" formControlName="ingredient4"></th><th><input type="number" formControlName="measurements4"></th></tr>
-      <tr><th><input type="text" formControlName="ingredient5"></th><th><input type="number" formControlName="measurements5"></th></tr>
-      <tr><th><input type="text" formControlName="ingredient6"></th><th><input type="number" formControlName="measurements6"></th></tr>
-      <tr><th><input type="text" formControlName="ingredient7"></th><th><input type="number" formControlName="measurements7"></th></tr>
-      <tr><th><input type="text" formControlName="ingredient8"></th><th><input type="number" formControlName="measurements8"></th></tr>
-      <tr><th><input type="text" formControlName="ingredient9"></th><th><input type="number" formControlName="measurements9"></th></tr>
-      <tr><th><input type="text" formControlName="ingredient10"></th><th><input type="number" formControlName="measurements10"></th></tr>
-      <tr><th><input type="text" formControlName="ingredient11"></th><th><input type="number" formControlName="measurements11"></th></tr>
-      <tr><th><input type="text" formControlName="ingredient12"></th><th><input type="number" formControlName="measurements12"></th></tr>
-    </table>
-  
-    <button class="button" type="submit">Add cocktail</button>
+          <tr><th><input type="text" formControlName="ingredient1"></th><th><input type="text" formControlName="measurements1"></th></tr>
+          <tr><th><input type="text" formControlName="ingredient2"></th><th><input type="text" formControlName="measurements2"></th></tr>
+          <tr><th><input type="text" formControlName="ingredient3"></th><th><input type="text" formControlName="measurements3"></th></tr>
+          <tr><th><input type="text" formControlName="ingredient4"></th><th><input type="text" formControlName="measurements4"></th></tr>
+          <tr><th><input type="text" formControlName="ingredient5"></th><th><input type="text" formControlName="measurements5"></th></tr>
+          <tr><th><input type="text" formControlName="ingredient6"></th><th><input type="text" formControlName="measurements6"></th></tr>
+          <tr><th><input type="text" formControlName="ingredient7"></th><th><input type="text" formControlName="measurements7"></th></tr>
+          <tr><th><input type="text" formControlName="ingredient8"></th><th><input type="text" formControlName="measurements8"></th></tr>
+          <tr><th><input type="text" formControlName="ingredient9"></th><th><input type="text" formControlName="measurements9"></th></tr>
+          <tr><th><input type="text" formControlName="ingredient10"></th><th><input type="text" formControlName="measurements10"></th></tr>
+          <tr><th><input type="text" formControlName="ingredient11"></th><th><input type="text" formControlName="measurements11"></th></tr>
+          <tr><th><input type="text" formControlName="ingredient12"></th><th><input type="text" formControlName="measurements12"></th></tr>
+        </table>
+      
+        <button class="button" type="submit">Add cocktail</button>
 
-    
+        
 
-    
-  
-  </form>
+        
+      
+    </form>
+  </div>
+  <div class="right">
+    {{randomCocktail["name"]}}<br>
+    {{randomCocktail["instructions"]}}<br>
+    <ul>
+      <li *ngFor="let measure of randomCocktail['measurements']">{{measure.ingredient.name}} {{measure.measurements}}</li>
+    </ul>
+
+    <button (click)="generateRandomcocktail()">Show random cocktail</button> <button *ngIf="canSave" (click)="saveRandomCocktail()">Save random cocktail</button>
+  </div>
 </div>

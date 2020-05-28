@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CocktailApiService } from '../cocktail-api.service';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { CurrentCocktailService } from '../current-cocktail.service';
 
 @Component({
   selector: 'app-view-cocktails',
@@ -17,7 +18,7 @@ export class ViewCocktailsComponent implements OnInit {
   products:any = [];
   
 
-  constructor(private service: CocktailApiService, private userService: UserService,private router: Router,){
+  constructor(private service: CocktailApiService, private userService: UserService,private router: Router,private currectCocktailService: CurrentCocktailService){
     
   }
 
@@ -41,8 +42,10 @@ export class ViewCocktailsComponent implements OnInit {
     this.service.createCocktailInDB().subscribe(data =>{});
     console.log("added");
   }
-  test(name){
-    console.log(name);
+  cocktailDetail(name,id){
+    this.currectCocktailService.cocktailName = name;
+    this.currectCocktailService.cocktailId = id+1;
+    this.router.navigate(['/update-cocktail-component']);
   }
 
 }

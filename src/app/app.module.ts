@@ -16,7 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { CanActivate , CanActivateChild, CanDeactivate} from '@angular/router';
 import { Guard } from './only-logged-in';
-import { EditCocktailComponent } from './edit-cocktail/edit-cocktail.component';
+import { UpdateCocktailComponent } from './update-cocktail/update-cocktail.component';
 
 
 
@@ -39,7 +39,7 @@ export function provideConfig(){
     ViewCocktailsComponent,
     LoginComponent,
     UserPageComponent,
-    EditCocktailComponent
+    UpdateCocktailComponent
   ],
   imports: [
     BrowserModule,

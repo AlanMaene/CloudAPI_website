@@ -14,6 +14,9 @@ export class AddCocktailComponent implements OnInit {
   checkoutForm;
   numberOfMeasurements: Array<Array<String>> = [["",""],[]];
   cocktail :any;
+  randomCocktailData: JSON;
+  randomCocktail:JSON;
+  canSave:Boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -67,18 +70,12 @@ export class AddCocktailComponent implements OnInit {
     //this.items = this.cartService.clearCart();
     var temp = {
       
-      "name": customerData['name'],
+    "name": customerData['name'],
     "instructions": customerData['instructions'],
     "inventor": {
       "name":customerData['bartender']
     },
     "measurements": [
-      {
-        "ingredient":{
-          "name": "passionfruit syrup"
-        },
-        "measurements": 15
-      }
     ]
     };
 
@@ -90,7 +87,7 @@ export class AddCocktailComponent implements OnInit {
               ingredient:{
                 name : customerData['ingredient' + i.toString()]
               },
-              measurements : Number.parseInt( customerData['measurements' + i.toString()])
+              measurements :  customerData['measurements' + i.toString()]
             }
           )
         }
@@ -104,10 +101,54 @@ export class AddCocktailComponent implements OnInit {
     this.checkoutForm.reset();
 
     console.warn('Your order has been submitted', customerData);
+    this.router.navigate(['']);
   }
 
   addIngredient(){
     this.numberOfMeasurements.push([]);
+  }
+
+  generateRandomcocktail(){
+    this.service.getRandomCocktail().subscribe(data =>{
+      
+      this.randomCocktailData = JSON.parse(JSON.stringify(data));
+      this.canSave = true;
+      this.convert();
+      
+    })
+    
+  }
+
+  convert(){
+    var temp = {      
+      "name": this.randomCocktailData["drinks"][0]["strDrink"],
+      "instructions": this.randomCocktailData["drinks"][0]["strInstructions"],
+      "inventor": {
+        "name":"unknown"
+      },
+      "measurements": [
+      ]
+      };
+
+      for( var i = 1 ; i <= 12 ; i++){
+        if(this.randomCocktailData["drinks"][0]['strIngredient' + i.toString()] != null && this.randomCocktailData["drinks"][0]['strMeasure' + i.toString()] != null){
+          console.log("ingredient: " +this.randomCocktailData["drinks"][0]['strIngredient' + i.toString()] + "measurements: " + this.randomCocktailData["drinks"][0]['strMeasure' + i.toString()]);
+          temp["measurements"].push(
+            {
+              ingredient:{
+                name : this.randomCocktailData["drinks"][0]['strIngredient' + i.toString()]
+              },
+              measurements : this.randomCocktailData["drinks"][0]['strMeasure' + i.toString()]
+            }
+          )
+        }
+    }
+    this.randomCocktail = JSON.parse(JSON.stringify(temp));
+    console.log(this.randomCocktail); 
+  }
+
+  saveRandomCocktail(){
+    this.service.createCocktailTest(JSON.stringify(this.randomCocktail)).subscribe(data =>{});
   }
 
 }

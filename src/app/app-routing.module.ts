@@ -5,6 +5,7 @@ import { ViewCocktailsComponent } from './view-cocktails/view-cocktails.componen
 import { LoginComponent } from './login/login.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import {Guard } from './only-logged-in';
+import { UpdateCocktailComponent } from './update-cocktail/update-cocktail.component';
 
 
 
@@ -13,6 +14,7 @@ const routes: Routes = [
     {path: '' , component: LoginComponent},
     { path: 'login-component' , component: LoginComponent },
     { path: 'view-cocktail-component' , component: ViewCocktailsComponent },
+    {path: 'update-cocktail-component' , component: UpdateCocktailComponent},
     {
       path:'add-cocktail-component',
       component: AddCocktailComponent,

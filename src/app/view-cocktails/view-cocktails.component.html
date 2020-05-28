@@ -5,8 +5,8 @@
 
        <h1>{{p.name}}  </h1>
        <table style="text-align:left">
-           <tr *ngFor="let measure of p.measurements"><th>{{measure.ingredient.name}}</th> <th>{{measure.measurements}}ml</th></tr>
+           <tr *ngFor="let measure of p.measurements"><th>{{measure.ingredient.name}}</th> <th>{{measure.measurements}}</th></tr>
         </table>
-        <button class="button"  (click)="test(p.name)">More info</button>
+        <button class="button"  (click)="cocktailDetail(p.name,i)">More info</button>
     </div>
 </div>

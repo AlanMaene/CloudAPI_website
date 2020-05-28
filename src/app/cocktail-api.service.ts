@@ -59,6 +59,17 @@ export class CocktailApiService {
     console.log(this.httpCredentials);
     return this.http.get("https://localhost:5001/api/v1/cocktails",{headers: {'Authorization':'Bearer ' + this.token}});
   }
+
+  getCocktail(name):Observable<any>{
+    return this.http.get("https://localhost:5001/api/v1/cocktails?name="+name,{headers: {'Authorization':'Bearer ' + this.token}});
+  }
+
+  getRandomCocktail():Observable<any>{
+    return this.http.get("https://the-cocktail-db.p.rapidapi.com/random.php",{headers: {
+    "x-rapidapi-host": "the-cocktail-db.p.rapidapi.com",
+    "x-rapidapi-key": "3bc33d089amsh38c06fda1ea7f0cp14c6a3jsn6d16edc70aee"}})
+  }
+
   createCocktailInDB(): Observable<any>{
     var test = {"name": "testerr",
     "instructions": "test",
@@ -98,9 +109,19 @@ export class CocktailApiService {
     return this.http.post("https://localhost:5001/api/v1/cocktails" , _cocktail ,{ headers } );
   }
 
+  updateCocktail(_cocktail): Observable<any>{
+    return this.http.put("https://localhost:5001/api/v1/cocktails" , _cocktail ,{headers: {'Authorization':'Bearer ' + this.token, 'Content-Type' : 'application/json'}});
+  }
+
+  deleteCocktail(id): Observable<any>{
+    return this.http.delete("https://localhost:5001/api/v1/cocktails/" + id );
+  }
+
   requestToken(googleIdToken){
     return this.http.post("https://localhost:5001/api/v1/login?idToken=" +googleIdToken,{},{});
   }
+
+ 
 
  
 
