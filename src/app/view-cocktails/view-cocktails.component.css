@@ -3,7 +3,7 @@ div{
 }
 div div{
     float: left;
-    min-height: 250px;
+    height: 350px;
     margin: 10px;
     padding: 20px;
 }
@@ -13,7 +13,7 @@ div div{
     list-style: none;
 }
 
-button {
+div div button {
     background-color: #f44336;
     color: white;
     padding: 14px 25px;

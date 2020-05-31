@@ -1,12 +1,18 @@
 
 <div class="container">
-    
+    <input [(ngModel)]="search" (input)="onSearchChange($event.target.value)" /> 
+    <button (click)="sortCocktail('name')">Name</button>
+    <button (click)="sortCocktail('bartender')">Bartender</button>
+    <button (click)="sortCocktail('measurements')">Measurements</button>
+    <button (click)="changeSorting('asc')">Asc</button>
+    <button (click)="changeSorting('desc')">Desc</button>
+    <br>
     <div *ngFor="let p of products; let i=index;">
 
        <h1>{{p.name}}  </h1>
        <table style="text-align:left">
            <tr *ngFor="let measure of p.measurements"><th>{{measure.ingredient.name}}</th> <th>{{measure.measurements}}</th></tr>
         </table>
-        <button class="button"  (click)="cocktailDetail(p.name,i)">More info</button>
+        <button class="button"  (click)="cocktailDetail(p.name,p.id)">More info</button>
     </div>
 </div>

@@ -1,53 +1,68 @@
 <h1>{{p[0].name}} </h1>
-{{p[0].instructions}}
+<!--{{p[0].instructions}}
        <table style="text-align:left">
            <tr *ngFor="let measure of p[0].measurements"><th>{{measure.ingredient.name}}</th> <th>{{measure.measurements}}</th></tr>
-        </table>
+        </table>-->
+<br>
 
+<!-- 
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  
+  <label>
+    First Name:
+    <input type="text" formControlName="firstName">
+  </label>
 
-        <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
-
-            <div>
-              <label for="name">
-                Name
-              </label>
-              <input id="name" type="text" formControlName="name">
-            </div>
+  <label>
+    Last Name:
+    <input type="text" formControlName="lastName">
+  </label>
+  <button class="button" type="submit">Update cocktail</button>
+</form>-->
+       <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+        {{error}}
+          <div>
+            <label for="name">
+              Name
+            </label>
+            <input id="name" type="text" formControlName="name" >
+          </div>
+        
+          <div>
+            <label for="bartender">
+              Bartender
+            </label>
+            <input id="address" type="text" formControlName="bartender">
+          </div>
+      
+          <div>
+            <label for="instuctions">
+              Instructions
+            </label>
+           
+            <textarea id="address" type="text" formControlName="instructions" ></textarea>
+          </div>
+      
+          <table >
+      
+            <tr><th><input type="text" formControlName="ingredient1" ></th><th><input type="text" formControlName="measurements1"></th></tr>
+            <tr><th><input type="text" formControlName="ingredient2"></th><th><input type="text" formControlName="measurements2"></th></tr>
+            <tr><th><input type="text" formControlName="ingredient3"></th><th><input type="text" formControlName="measurements3"></th></tr>
+            <tr><th><input type="text" formControlName="ingredient4"></th><th><input type="text" formControlName="measurements4"></th></tr>
+            <tr><th><input type="text" formControlName="ingredient5"></th><th><input type="text" formControlName="measurements5"></th></tr>
+            <tr><th><input type="text" formControlName="ingredient6"></th><th><input type="text" formControlName="measurements6"></th></tr>
+            <tr><th><input type="text" formControlName="ingredient7"></th><th><input type="text" formControlName="measurements7"></th></tr>
+            <tr><th><input type="text" formControlName="ingredient8"></th><th><input type="text" formControlName="measurements8"></th></tr>
+            <tr><th><input type="text" formControlName="ingredient9"></th><th><input type="text" formControlName="measurements9"></th></tr>
+            <tr><th><input type="text" formControlName="ingredient10"></th><th><input type="text" formControlName="measurements10"></th></tr>
+            <tr><th><input type="text" formControlName="ingredient11"></th><th><input type="text" formControlName="measurements11"></th></tr>
+            <tr><th><input type="text" formControlName="ingredient12"></th><th><input type="text" formControlName="measurements12"></th></tr>
+          </table>
+        
+          <button class="button" type="submit">Update cocktail</button>
+          <button (click)="deleteCocktail()" > Delete cocktail </button>
           
-            <div>
-              <label for="bartender">
-                Bartender
-              </label>
-              <input id="address" type="text" formControlName="bartender">
-            </div>
-        
-            <div>
-              <label for="instuctions">
-                Instructions
-              </label>
-              <input id="address" type="text" formControlName="instructions">
-            </div>
-        
-            <table >
-        
-              <tr><th><input type="text" formControlName="ingredient1" ></th><th><input type="number" formControlName="measurements1"></th></tr>
-              <tr><th><input type="text" formControlName="ingredient2"></th><th><input type="number" formControlName="measurements2"></th></tr>
-              <tr><th><input type="text" formControlName="ingredient3"></th><th><input type="number" formControlName="measurements3"></th></tr>
-              <tr><th><input type="text" formControlName="ingredient4"></th><th><input type="number" formControlName="measurements4"></th></tr>
-              <tr><th><input type="text" formControlName="ingredient5"></th><th><input type="number" formControlName="measurements5"></th></tr>
-              <tr><th><input type="text" formControlName="ingredient6"></th><th><input type="number" formControlName="measurements6"></th></tr>
-              <tr><th><input type="text" formControlName="ingredient7"></th><th><input type="number" formControlName="measurements7"></th></tr>
-              <tr><th><input type="text" formControlName="ingredient8"></th><th><input type="number" formControlName="measurements8"></th></tr>
-              <tr><th><input type="text" formControlName="ingredient9"></th><th><input type="number" formControlName="measurements9"></th></tr>
-              <tr><th><input type="text" formControlName="ingredient10"></th><th><input type="number" formControlName="measurements10"></th></tr>
-              <tr><th><input type="text" formControlName="ingredient11"></th><th><input type="number" formControlName="measurements11"></th></tr>
-              <tr><th><input type="text" formControlName="ingredient12"></th><th><input type="number" formControlName="measurements12"></th></tr>
-            </table>
+      
           
-            <button class="button" type="submit">Update cocktail</button>
-            <button (click)="deleteCocktail()" > Delete cocktail </button>
-            
         
-            
-          
-          </form>
+      </form>

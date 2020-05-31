@@ -22,6 +22,8 @@ export class CocktailApiService {
   cocktail: any;
   test: JSON;
   token: String;
+  
+  sort: String = "asc";
 
   httpCredentials = {
     headers: new HttpHeaders({
@@ -57,11 +59,11 @@ export class CocktailApiService {
 
   getCocktails(): Observable<any> { 
     console.log(this.httpCredentials);
-    return this.http.get("https://localhost:5001/api/v1/cocktails",{headers: {'Authorization':'Bearer ' + this.token}});
+    return this.http.get("https://cloud-api-277011.appspot.com/api/v1/cocktails",{headers: {'Authorization':'Bearer ' + this.token}});
   }
 
   getCocktail(name):Observable<any>{
-    return this.http.get("https://localhost:5001/api/v1/cocktails?name="+name,{headers: {'Authorization':'Bearer ' + this.token}});
+    return this.http.get("https://cloud-api-277011.appspot.com/api/v1/cocktails?name="+name,{headers: {'Authorization':'Bearer ' + this.token}});
   }
 
   getRandomCocktail():Observable<any>{
@@ -101,24 +103,31 @@ export class CocktailApiService {
       }
     ]};
     console.log("Post");
-    return this.http.post("https://localhost:5001/api/v1/cocktails" , body ,{ headers } );
+    return this.http.post("https://cloud-api-277011.appspot.com/api/v1/cocktails" , body ,{ headers } );
   }
 
   createCocktailTest(_cocktail): Observable<any>{
     const headers = {'Content-Type': 'application/json'};
-    return this.http.post("https://localhost:5001/api/v1/cocktails" , _cocktail ,{ headers } );
+    return this.http.post("https://cloud-api-277011.appspot.com/api/v1/cocktails" , _cocktail ,{ headers } );
   }
 
   updateCocktail(_cocktail): Observable<any>{
-    return this.http.put("https://localhost:5001/api/v1/cocktails" , _cocktail ,{headers: {'Authorization':'Bearer ' + this.token, 'Content-Type' : 'application/json'}});
+    return this.http.put("https://cloud-api-277011.appspot.com/api/v1/cocktails" , _cocktail ,{headers: {'Authorization':'Bearer ' + this.token, 'Content-Type' : 'application/json'}});
   }
 
   deleteCocktail(id): Observable<any>{
-    return this.http.delete("https://localhost:5001/api/v1/cocktails/" + id );
+    return this.http.delete("https://cloud-api-277011.appspot.com/api/v1/cocktails/" + id );
+  }
+  getCocktailByName(name): Observable<any>{
+    return this.http.get("https://cloud-api-277011.appspot.com/api/v1/cocktails?name="  + name,{headers: {'Authorization':'Bearer ' + this.token, 'Content-Type' : 'application/json'}});
   }
 
   requestToken(googleIdToken){
-    return this.http.post("https://localhost:5001/api/v1/login?idToken=" +googleIdToken,{},{});
+    return this.http.post("https://cloud-api-277011.appspot.com/api/v1/login?idToken=" +googleIdToken,{},{});
+  }
+
+  getSortedCocktails(sortingOn): Observable<any>{
+    return this.http.get("https://cloud-api-277011.appspot.com/api/v1/cocktails?sort="+sortingOn+"&dir=" + this.sort,{headers: {'Authorization':'Bearer ' + this.token, 'Content-Type' : 'application/json'}});
   }
 
  

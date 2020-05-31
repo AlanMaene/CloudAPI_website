@@ -17,6 +17,7 @@ export class AddCocktailComponent implements OnInit {
   randomCocktailData: JSON;
   randomCocktail:JSON;
   canSave:Boolean = false;
+  error: String = "";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -87,7 +88,7 @@ export class AddCocktailComponent implements OnInit {
               ingredient:{
                 name : customerData['ingredient' + i.toString()]
               },
-              measurements :  customerData['measurements' + i.toString()]
+              measurements :  customerData['measurements' + i.toString()].toString()
             }
           )
         }
@@ -97,11 +98,17 @@ export class AddCocktailComponent implements OnInit {
 
     var newtemp = JSON.stringify(temp);
     console.log(newtemp);    
-    this.service.createCocktailTest(newtemp).subscribe(data =>{});
+    this.service.createCocktailTest(newtemp).subscribe(data =>{
+      this.router.navigate(['']);
+    }, err => {
+      
+      console.log("raar" + err); 
+      this.error = JSON.stringify(err.error);  
+    });
     this.checkoutForm.reset();
 
-    console.warn('Your order has been submitted', customerData);
-    this.router.navigate(['']);
+    console.warn('Your cocktail has been submitted', customerData);
+    
   }
 
   addIngredient(){

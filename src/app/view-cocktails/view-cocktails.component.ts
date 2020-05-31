@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { CocktailApiService } from '../cocktail-api.service';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
@@ -16,6 +16,8 @@ export class ViewCocktailsComponent implements OnInit {
   title = 'cloudAPI-website';
   cocktails :JSON;
   products:any = [];
+  search:String = "";
+  
   
 
   constructor(private service: CocktailApiService, private userService: UserService,private router: Router,private currectCocktailService: CurrentCocktailService){
@@ -29,6 +31,27 @@ export class ViewCocktailsComponent implements OnInit {
     this.getProducts();
   }
 
+  onSearchChange(searchValue: string): void {  
+    console.log(searchValue);
+    this.service.getCocktailByName(searchValue).subscribe((data: {}) => {
+      console.log(data);
+      this.products = data;
+      this.cocktails = JSON.parse(JSON.stringify(this.products));
+    });
+  }
+
+  sortCocktail(value: string): void{
+    this.service.getSortedCocktails(value).subscribe((data: {}) => {
+      console.log(data);
+      this.products = data;
+      this.cocktails = JSON.parse(JSON.stringify(this.products));
+    });
+  }
+
+  changeSorting(value: string){
+    this.service.sort = value;
+  }
+
   getProducts() {
     this.products = [];
     this.service.getCocktails().subscribe((data: {}) => {
@@ -38,13 +61,16 @@ export class ViewCocktailsComponent implements OnInit {
     });
   }
 
+  
+
   createCocktail(){
     this.service.createCocktailInDB().subscribe(data =>{});
     console.log("added");
   }
   cocktailDetail(name,id){
     this.currectCocktailService.cocktailName = name;
-    this.currectCocktailService.cocktailId = id+1;
+    this.currectCocktailService.cocktailId = id;
+    console.log("id: " + id);
     this.router.navigate(['/update-cocktail-component']);
   }
 

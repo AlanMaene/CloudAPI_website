@@ -17,6 +17,9 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { CanActivate , CanActivateChild, CanDeactivate} from '@angular/router';
 import { Guard } from './only-logged-in';
 import { UpdateCocktailComponent } from './update-cocktail/update-cocktail.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+ 
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -48,6 +51,12 @@ export function provideConfig(){
     FormsModule,
     ReactiveFormsModule,
     SocialLoginModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
 
     
   ],
